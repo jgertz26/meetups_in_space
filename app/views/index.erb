@@ -1,0 +1,23 @@
+<h1>Upcoming Meetups:</h1>
+
+<ul>
+<%@meetups.each do |meetup|%>
+  <li class="meetup"><a href="/meetups/<%=meetup.id%>"><%=meetup.title%></a></li>
+<%end%>
+</ul>
+
+<br>
+<h4>Create your own meetup!</h4>
+<form action="/" method="post">
+  Title:
+  <input type="text" name="title" required>
+  Location:
+  <input type="text" name="location" required>
+  Date:
+  <input type="text" name="date" placeholder="YYYY/MM/DD" required>
+  <br><br>
+  Description:<br>
+  <input type="text" name="description" required>
+  <br><br>
+  <input type="submit" value="Submit">
+</form>

@@ -1,0 +1,29 @@
+<h1><%=meetup.title%></h1>
+
+<h5><%=meetup.date%> - <%=meetup.location%></h5>
+
+<p><%=meetup.description%></p>
+<br>
+
+
+<%if in_group?(meetup)%>
+<form action="/meetups/<%=meetup.id%>/leave" method="post">
+  <input type="submit" value="Leave Meetup!">
+</form>
+<%elsif !in_group?(meetup)%>
+<form action="/meetups/<%=meetup.id%>/join" method="post">
+  <input type="submit" value="Join Meetup!">
+</form>
+<%else%>
+<p>Log In!</p>
+<%end%>
+
+<h4>Current attendees:</h4>
+<ul>
+  <%meetup.users.order(:username).each do |user|%>
+    <li>
+      <%=user.username%>
+      <img src="<%=user.avatar_url%>" height="42" width="42">
+    </li>
+  <%end%>
+</ul>
